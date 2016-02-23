@@ -4,3 +4,4 @@ FactoryGirl.define do
     drink_type { ['coffee', 'tea'].sample }
   end
 end
+ 

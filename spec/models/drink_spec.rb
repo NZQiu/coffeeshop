@@ -11,7 +11,10 @@ describe Drink do
   end
 
   describe '#teas' do
-    it 'returns an array of all tea type drinks'
+    it 'returns an array of all tea type drinks' do
+      create_list :drink, 2, drink_type: 'tea'
 
+      expect(Drink.teas.count).to eq 2
+    end
   end
 end
