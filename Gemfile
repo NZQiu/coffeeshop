@@ -9,14 +9,15 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 # gem 'turbolinks'
 
-gem 'spring',        group: :development
+gem 'enumerize'
 
 group :development, :test do
   gem 'awesome_print'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'spring'
 end
 
 group :test do
-  gem 'rspec-rails'  
+  gem 'rspec-rails'
 end
