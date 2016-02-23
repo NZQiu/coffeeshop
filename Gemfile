@@ -10,7 +10,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'enumerize'
-gem "haml-rails", "~> 0.9"
 
 group :development, :test do
   gem 'awesome_print'
