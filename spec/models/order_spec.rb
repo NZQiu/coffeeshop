@@ -10,6 +10,11 @@ describe Order do
       expect(order.valid?).to be_falsy
     end
 
-    it 'denies when item_id is invalid'
+    it 'denies when item_id is invalid' do
+      item = create :item
+
+      order = build :order, item_id: item.id+1
+      expect(order.valid?).to be_falsy
+    end
   end
 end
