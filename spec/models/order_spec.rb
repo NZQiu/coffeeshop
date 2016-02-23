@@ -18,6 +18,11 @@ describe Order do
     end
   end
 
+  it 'List all orders' do
+    create_list :order, 5
+    expect(Order.all.count).to eq 5
+  end
+
   describe '#total_sales' do
     it 'calculates total sales of all orders' do
       item_1 = create :item, price: 100
