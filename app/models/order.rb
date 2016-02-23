@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   validates :item, presence: true
 
   scope :teas, -> { joins(:item, item: :drink).where('drinks.drink_type': 'tea') }
+  scope :coffees, -> { joins(:item, item: :drink).where('drinks.drink_type': 'coffee') }
 
   def self.total_sales
     sum = 0
