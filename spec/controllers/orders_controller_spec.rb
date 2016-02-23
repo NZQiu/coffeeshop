@@ -5,8 +5,19 @@ describe OrdersController do
 
   end
 
-  # describe 'GET #new' do
-  # end
+  describe 'GET #new' do
+    it 'goes to order creation page' do
+      get :new
+
+      expect(response).to be_success
+    end
+
+    it 'builds a new order object', focus: true do
+      get :new
+
+      expect(assigns(:order).persisted?).to be_falsy
+    end
+  end
 
   describe 'POST #create' do
   end
@@ -15,6 +26,6 @@ describe OrdersController do
   end
 
   describe 'GET #size' do
-    
+
   end
 end
