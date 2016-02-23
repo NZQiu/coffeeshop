@@ -17,4 +17,18 @@ describe Order do
       expect(order.valid?).to be_falsy
     end
   end
+
+  describe '#total_sales' do
+    it 'calculates total sales of all orders' do
+      item_1 = create :item, price: 100
+      item_2 = create :item, price: 200
+      item_3 = create :item, price: 300
+
+      create :order, item: item_1
+      create :order, item: item_2
+      create_list :order, 2, item: item_3
+
+      expect(Order.total_sales).to eq (100+200+2*300)
+    end
+  end
 end
