@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :order do
-    item_id 1
+    association :item, factory: :item
   end
 end
