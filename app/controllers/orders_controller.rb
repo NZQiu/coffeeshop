@@ -3,6 +3,15 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def create
+    @order = Order.new order_params
+    if @order.save
+      redirect_to orders_path, alert: 'Order created'
+    else
+      render :new
+    end
+  end
+
   def index
   end
 
@@ -10,5 +19,10 @@ class OrdersController < ApplicationController
   end
 
   def size
+  end
+
+  private
+  def order_params
+    params.require(:order).permit(:item_id)
   end
 end
