@@ -1,0 +1,23 @@
+<h1>All orders</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Item name</th>
+    <th>Item cup size</th>
+    <th>Item type</th>
+    <th>Item price</th>
+  </tr>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.item.drink.name %></td>
+      <td><%= order.item.cup_size %></td>
+      <td><%= order.item.drink.drink_type %></td>
+      <td><%= order.item.display_price %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Add order", new_order_path %>
