@@ -2,7 +2,14 @@ require 'rails_helper'
 
 describe OrdersController do
   describe 'GET #index' do
+    it 'lists all orders' do
+      get :index
 
+      expect(response).to be_success
+
+      create_list :order, 3
+      expect(assigns(:orders).count).to eq 3
+    end
   end
 
   describe 'GET #new' do

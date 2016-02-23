@@ -15,9 +15,10 @@
       <td><%= order.item.drink.name %></td>
       <td><%= order.item.cup_size %></td>
       <td><%= order.item.drink.drink_type %></td>
-      <td><%= order.item.display_price %></td>
+      <td><%= format_price order.item.price %></td>
     </tr>
   <% end %>
 </table>
 
+<h3>Total sales: <%= format_price Order.total_sales %></h3>
 <%= link_to "Add order", new_order_path %>
