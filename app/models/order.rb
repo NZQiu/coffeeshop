@@ -13,8 +13,8 @@ class Order < ActiveRecord::Base
   end
 
   def self.by_cup_size(size)
-    return nil unless Item.sizes.values.include?(size && size.downcase)
+    return nil unless Item.cup_size.values.include?(size && size.downcase)
 
-    joins(:item).where('items.size': size.downcase)
+    joins(:item).where('items.cup_size': size.downcase)
   end
 end

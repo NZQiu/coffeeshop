@@ -4,5 +4,5 @@ class Item < ActiveRecord::Base
   validates :drink, presence: true
 
   extend Enumerize
-  enumerize :sizes, in: ['tall', 'grande', 'venti']
+  enumerize :cup_size, in: ['tall', 'grande', 'venti']
 end

@@ -49,8 +49,8 @@ describe Order do
 
   describe "#by_cup_size" do
     it 'return an array of all orders with specific cup size' do
-      venti_item = create :item, size: 'venti'
-      tall_item = create :item, size: 'tall'
+      venti_item = create :item, cup_size: 'venti'
+      tall_item = create :item, cup_size: 'tall'
 
       create_list :order, 2, item: venti_item
       create_list :order, 3, item: tall_item
@@ -59,10 +59,10 @@ describe Order do
     end
 
     it 'return an array of all orders with specific cup size and different drink types' do
-      coffee_venti_item = create :item, size: 'venti', drink: create(:coffee)
-      tea_venti_item = create :item, size: 'venti', drink: create(:tea)
+      coffee_venti_item = create :item, cup_size: 'venti', drink: create(:coffee)
+      tea_venti_item = create :item, cup_size: 'venti', drink: create(:tea)
 
-      tall_item = create :item, size: 'tall'
+      tall_item = create :item, cup_size: 'tall'
 
       create :order, item: coffee_venti_item
       create :order, item: tea_venti_item
