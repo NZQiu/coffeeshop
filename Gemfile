@@ -10,3 +10,13 @@ gem 'jquery-rails'
 # gem 'turbolinks'
 
 gem 'spring',        group: :development
+
+group :development, :test do
+  gem 'awesome_print'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+end
+
+group :test do
+  gem 'rspec-rails'  
+end
