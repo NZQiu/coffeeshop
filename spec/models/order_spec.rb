@@ -12,7 +12,7 @@ describe Order do
 
     it 'denies when item_id is invalid' do
       item = create :item
-
+[]
       order = build :order, item_id: item.id+1
       expect(order.valid?).to be_falsy
     end
@@ -34,6 +34,16 @@ describe Order do
       create_list :order, 2, item: item_3
 
       expect(Order.total_sales).to eq (100+200+2*300)
+    end
+  end
+
+  describe "#teas" do
+    it 'returns an array of all tea type orders' do
+      drink = create :drink, drink_type: 'tea'
+      item = create :item, drink: drink
+      create_list :order,3, item: item
+
+      expect(Order.teas.count).to eq 3
     end
   end
 end
