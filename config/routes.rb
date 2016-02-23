@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  root 'orders#index'
   get 'new' => 'orders#new'
-  get 'orders/type'
-  get 'orders/size'
+  resources :orders, only: [:new, :create, :index] do
+    get :type, on: :collection
+    get :size, on: :collection
+  end
+
+  root 'orders#index'
+
 end
