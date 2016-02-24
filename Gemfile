@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'enumerize'
+gem "haml-rails"
 
 group :development, :test do
   gem 'awesome_print'
