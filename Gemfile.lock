@@ -128,7 +128,6 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  coffee-rails (~> 4.0.0)
   enumerize
   factory_girl_rails
   ffaker

@@ -1,4 +1,9 @@
 class OrdersController < ApplicationController
+
+  def index
+    @orders = Order.all
+  end
+
   def new
     @order = Order.new
   end
@@ -10,16 +15,6 @@ class OrdersController < ApplicationController
     else
       render :new
     end
-  end
-
-  def index
-    @orders = Order.all
-  end
-
-  def type
-  end
-
-  def size
   end
 
   private

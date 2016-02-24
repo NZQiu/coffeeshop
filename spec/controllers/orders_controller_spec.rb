@@ -32,11 +32,5 @@ describe OrdersController do
       expect { post :create, { order: { item_id: item.id } } }.to change(Order, :count).by 1
     end
   end
-
-  describe 'GET #type' do
-  end
-
-  describe 'GET #size' do
-
-  end
+  
 end
