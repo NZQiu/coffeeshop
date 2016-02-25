@@ -1,5 +1,11 @@
-%h1 All orders
-%table
+
+=render 'nav', {active: 0}
+
+%h2
+  %i.fa.fa-list-alt
+  %span Order Listing
+
+%table.table.table-striped
   %tr
     %th Id
     %th Item name
@@ -15,4 +21,3 @@
       %td= format_price order.item.price
 %h3
   Total sales: #{format_price Order.total_sales}
-= link_to "Add order", new_order_path

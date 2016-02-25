@@ -1,8 +1,10 @@
 = content_for :title do
   Create New Order
 
-%h1 Orders#new
+=render 'nav', {active: 1}
+
+%h2 Make new Order
+
 = form_for @order, method: :post do |f|
-  = f.label :item
   = f.select :item_id, Item.all.collect { |p| [ "#{p.drink.name} - #{p.cup_size}", p.id ] }
   = f.submit
