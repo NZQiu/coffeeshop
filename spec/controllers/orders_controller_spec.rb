@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe OrdersController do
   describe 'GET #index' do
-    it 'lists all orders' do
+    it 'go to index page' do
       get :index
 
       expect(response).to be_success
@@ -10,13 +10,26 @@ describe OrdersController do
   end
 
   describe 'GET #listing' do
-    it 'lists all orders' do
+    it 'go to order listing page' do
       get :listing
 
       expect(response).to be_success
+    end
 
-      create_list :order, 3
-      expect(assigns(:orders).count).to eq 3
+    it 'list first 5 orders if more than 5' do
+      get :listing
+
+      create_list :order, 8
+      expect(assigns(:orders).count).to eq 5
+    end
+
+    it 'list all orders if not more than 5' do
+      get :listing
+
+      expect(assigns(:orders).count).to eq 0
+      
+      create_list :order, 4
+      expect(assigns(:orders).count).to eq 4
     end
 
   end

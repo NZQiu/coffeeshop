@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
 
+  ORDERS_PER_PAGE = 5
+  
   def index
   end
 
   def listing
-    @orders = Order.all.order(created_at: :desc)
+    @orders = Order.all.order(created_at: :desc).page(params[:page]).per(ORDERS_PER_PAGE)
     respond_to do |f|
       f.html { render layout: false }
     end
