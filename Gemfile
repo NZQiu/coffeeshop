@@ -6,10 +6,10 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem 'turbolinks'
+gem 'font-awesome-rails'
+gem 'haml-rails'
 
 gem 'enumerize'
-gem "haml-rails"
 
 group :development, :test do
   gem 'awesome_print'
