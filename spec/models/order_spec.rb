@@ -47,7 +47,7 @@ describe Order do
     end
   end
 
-  describe "#by_drink_type", focus: true do
+  describe "#by_drink_type" do
     it 'return an array of all orders with specific drink type' do
       tea_item = create :item, drink: create(:tea)
       coffee_item = create :item, drink: create(:coffee)
@@ -81,11 +81,8 @@ describe Order do
 
   describe "#by_cup_size" do
     it 'return an array of all orders with specific cup size' do
-      venti_item = create :item, cup_size: 'venti'
-      tall_item = create :item, cup_size: 'tall'
-
-      create_list :order, 2, item: venti_item
-      create_list :order, 3, item: tall_item
+      create_list :order, 2, item: create(:venti)
+      create_list :order, 3, item: create(:tall)
 
       expect(Order.by_cup_size('Venti').count).to eq 2
     end

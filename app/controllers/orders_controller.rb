@@ -4,6 +4,13 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def listing
+    @orders = Order.all.order(created_at: :desc)
+    respond_to do |f|
+      f.html { render layout: false }
+    end
+  end
+
   def new
     @order = Order.new
   end
