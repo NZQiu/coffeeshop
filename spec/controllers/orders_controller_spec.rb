@@ -6,9 +6,6 @@ describe OrdersController do
       get :index
 
       expect(response).to be_success
-
-      create_list :order, 3
-      expect(assigns(:orders).count).to eq 3
     end
   end
 
@@ -22,9 +19,6 @@ describe OrdersController do
       expect(assigns(:orders).count).to eq 3
     end
 
-    it 'listing all coffee orders' do
-
-    end
   end
 
   describe 'GET #new' do

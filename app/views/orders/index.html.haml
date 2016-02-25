@@ -4,20 +4,9 @@
 %h2
   %i.fa.fa-list-alt
   %span Order Listing
+  %span.loading-icon
+    =image_tag "ajax-loader.gif"
 
-%table.table.table-striped
-  %tr
-    %th Id
-    %th Item name
-    %th Item cup size
-    %th Item type
-    %th Item price
-  - @orders.each do |order|
-    %tr
-      %td= order.id
-      %td= order.item.drink.name
-      %td= order.item.cup_size
-      %td= order.item.drink.drink_type
-      %td= format_price order.item.price
+#order-data{data: { url: listing_orders_path }}
 %h3
   Total sales: #{format_price Order.total_sales}
