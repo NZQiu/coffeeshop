@@ -47,6 +47,38 @@ describe Order do
     end
   end
 
+  describe "#by_drink_type", focus: true do
+    it 'return an array of all orders with specific drink type' do
+      tea_item = create :item, drink: create(:tea)
+      coffee_item = create :item, drink: create(:coffee)
+
+      create_list :order, 3, item: tea_item
+      create_list :order, 2, item: coffee_item
+
+      expect(Order.by_drink_type('tea').count).to eq 3
+    end
+
+    it 'return an array of all orders with specific drink types and different cup size' do
+      coffee_tall_item = create :item, cup_size: 'tall', drink: create(:coffee)
+      coffee_venti_item = create :item, cup_size: 'venti', drink: create(:coffee)
+
+      tea_item = create :item, drink: create(:tea)
+
+      create :order, item: coffee_tall_item
+      create :order, item: coffee_venti_item
+      create_list :order, 3, item: tea_item
+
+      expect(Order.by_drink_type('CoffeE').count).to eq 2
+      expect(Order.by_drink_type('coffee').count).to eq 2
+    end
+
+    it 'reject invalid drink type' do
+      expect(Order.by_drink_type('nothing')).to eq nil
+      expect(Order.by_drink_type(nil)).to eq nil
+    end
+
+  end
+
   describe "#by_cup_size" do
     it 'return an array of all orders with specific cup size' do
       venti_item = create :item, cup_size: 'venti'
