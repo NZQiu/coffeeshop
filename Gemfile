@@ -11,6 +11,9 @@ gem 'haml-rails'
 
 gem 'enumerize'
 
+# For pagination
+gem 'kaminari'
+
 group :development, :test do
   gem 'awesome_print'
   gem 'factory_girl_rails'
