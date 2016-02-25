@@ -1,12 +1,46 @@
 
 =render 'nav', {active: 0}
 
-%h2
-  %i.fa.fa-list-alt
-  %span Order Listing
-  %span.loading-icon
-    =image_tag "ajax-loader.gif"
+.panel.panel-primary
+  .panel-body
+    #order-ddl.dropdown
+      %button.btn.btn-default.dropdown-toggle#order-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
+        %i.fa.fa-coffee
+        %span= 'Make a Order'
+        %span.caret
+      %ul.dropdown-menu{'aria-labelledby' => 'order-ddl-btn'}
+        - Item.all.find_each do |item|
+          %li
+            %a{'href' => 'javascript:void(0);', 'data-id' => item.id}= "#{item.drink.name.humanize} - #{item.cup_size.humanize}"
 
-#order-data{data: { url: listing_orders_path }}
-%h3
-  Total sales: #{format_price Order.total_sales}
+.panel.panel-info
+  .panel-heading
+    %i.fa.fa-list-alt
+    %span Order Listing
+    %span.loading-icon
+      =image_tag "ajax-loader.gif"
+  .panel-body
+    .row
+      .col-xs-4
+        %h4.total-sales= "Total Sales: #{format_price Order.total_sales}"
+      .col-xs-4
+        #type-ddl.dropdown
+          %button.btn.btn-default.dropdown-toggle#type-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
+            %i.fa.fa-database
+            %span= 'Group by Type'
+            %span.caret
+          %ul.dropdown-menu{'aria-labelledby' => 'type-ddl-btn'}
+            - ['Coffee', 'Tea'].each do |i|
+              %li
+                %a{'href' => 'javascript:void(0);'}= i
+      .col-xs-4
+        #cup-ddl.dropdown
+          %button.btn.btn-default.dropdown-toggle#cup-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
+            %i.fa.fa-database
+            %span= 'Group by Cup'
+            %span.caret
+          %ul.dropdown-menu{'aria-labelledby' => 'cup-ddl-btn'}
+            - ['Tall', 'Grande', 'Venti'].each do |i|
+              %li
+                %a{'href' => 'javascript:void(0);'}= i
+    #order-data{data: { url: listing_orders_path }}

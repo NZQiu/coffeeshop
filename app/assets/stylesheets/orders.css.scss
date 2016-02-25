@@ -17,6 +17,18 @@ body {
   }
 }
 
+#order-data {
+  padding: 8px 0;
+}
+
+.panel-heading{
+  font-size: 20px;
+  .loading-icon img{
+    width: 20px;
+    height: 20px;
+  }
+}
+
 ul.pagination{
   float: right;
   margin: 0;
