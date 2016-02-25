@@ -1,15 +1,17 @@
 %table.table.table-striped
   %tr
-    %th Id
-    %th Item name
-    %th Item cup size
-    %th Item type
-    %th Item price
+    %th
+    %th Name
+    %th Cup Size
+    %th Type
+    %th Price
+    %th Order Time
   - @orders.each do |order|
     %tr
       %td= order.id
-      %td= order.item.drink.name
-      %td= order.item.cup_size
-      %td= order.item.drink.drink_type
+      %td= order.item.drink.name.humanize
+      %td= order.item.cup_size.humanize
+      %td= order.item.drink.drink_type.humanize
       %td= format_price order.item.price
+      %td= order.created_at.strftime('%d %b %Y %H:%M:%S')
 = paginate @orders
