@@ -31,6 +31,11 @@
       }
     });
 
+    var dAjaxOrders = debounce(ajaxOrders, 1000, true);
+    $('#refresh-list').click(function() {
+      dAjaxOrders();
+    });
+
     function ajaxOrders(page) {
       $('span.loading-icon').show();
       $.get($(orderData).data('url'), {
@@ -41,14 +46,6 @@
         $(orderData).html(data);
         $('span.loading-icon').hide();
       });
-    }
-
-    function getUrlParams(url) {
-      var params = {};
-      url.substring(1).replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
-        params[key] = value;
-      });
-      return params;
     }
 
   });
