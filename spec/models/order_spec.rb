@@ -37,16 +37,6 @@ describe Order do
     end
   end
 
-  describe "#teas" do
-    it 'returns an array of all tea type orders' do
-      drink = create :drink, drink_type: 'tea'
-      item = create :item, drink: drink
-      create_list :order,3, item: item
-
-      expect(Order.teas.count).to eq 3
-    end
-  end
-
   describe "#by_drink_type" do
     it 'return an array of all orders with specific drink type' do
       tea_item = create :item, drink: create(:tea)

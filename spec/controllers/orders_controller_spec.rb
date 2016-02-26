@@ -27,31 +27,19 @@ describe OrdersController do
       get :listing
 
       expect(assigns(:orders).count).to eq 0
-      
+
       create_list :order, 4
       expect(assigns(:orders).count).to eq 4
     end
 
   end
 
-  describe 'GET #new' do
-    it 'goes to order creation page' do
-      get :new
-
-      expect(response).to be_success
-    end
-
-    it 'builds a new order object' do
-      get :new
-
-      expect(assigns(:order).persisted?).to be_falsy
-    end
-  end
-
   describe 'POST #create' do
     it 'create a new order in database' do
       item = create :item
-      expect { post :create, { order: { item_id: item.id } } }.to change(Order, :count).by 1
+      xhr :post, :create, { order: { item_id: item.id } }
+
+      expect(response).to be_success
     end
   end
 
