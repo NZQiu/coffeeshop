@@ -2,8 +2,6 @@
   %head
     = render '/layouts/head'
   %body
-    .container
-      .row
-        .col-xs-12
-          = yield
+    #main.container
+      = yield
     = javascript_include_tag 'application'

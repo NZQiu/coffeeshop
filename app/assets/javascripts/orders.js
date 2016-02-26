@@ -12,7 +12,7 @@
       $.post($(orderDdl).data('url'), {
         id: item_id
       }).done(function(data) {
-        console.log(data);
+        data.is_succ ? showNotice(data.msg) : showError(data.msg);
       });
     });
 
@@ -56,6 +56,7 @@
       }).done(function(data) {
         $(orderData).html(data);
         $('span.loading-icon').hide();
+        showNotice('Order Listing load successfully', 4000);
       });
     }
 

@@ -1,5 +1,9 @@
 
-=render 'nav', {active: 0}
+=render 'nav'
+
+.alert.alert-success.fade.in.text-center.hidden
+  %button.close{"data-dismiss" => "alert", type: "button"}=raw "&times;"
+  %span
 
 .panel.panel-info
   .panel-body
@@ -11,7 +15,8 @@
       %ul.dropdown-menu#order-ddl-menu{'aria-labelledby' => 'order-ddl-btn', 'data-url' => orders_path}
         - Item.all.find_each do |item|
           %li
-            %a.menu-item{'href' => 'javascript:void(0);', 'data-id' => item.id}= "#{item.drink.name.humanize} - #{item.cup_size.humanize}"
+            %a.menu-item{:href => 'javascript:void(0);', 'data-id' => item.id}= "#{item.drink.name.humanize} - #{item.cup_size.humanize}"
+
 .panel.panel-primary
   .panel-heading
     %i.fa.fa-list-alt
@@ -32,7 +37,7 @@
           %ul.dropdown-menu#type-ddl-menu{'aria-labelledby' => 'type-ddl-btn'}
             - ['All', 'Coffee', 'Tea'].each do |i|
               %li
-                %a.menu-item{'href' => 'javascript:void(0);'}= i
+                %a.menu-item{:href => 'javascript:void(0);'}= i
       .col-xs-4
         #cup-ddl.dropdown
           %button.btn.btn-default.dropdown-toggle#cup-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
@@ -42,5 +47,5 @@
           %ul.dropdown-menu#size-ddl-menu{'aria-labelledby' => 'cup-ddl-btn'}
             - ['All', 'Tall', 'Grande', 'Venti'].each do |i|
               %li
-                %a.menu-item{'href' => 'javascript:void(0);'}= i
+                %a.menu-item{:href => 'javascript:void(0);'}= i
     #order-data{data: { url: listing_orders_path }}
