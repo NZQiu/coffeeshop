@@ -2,16 +2,21 @@
   $().ready(function() {
     var orderData = $('#order-data'),
       typeDdl = $('#type-ddl-menu'),
-      sizeDdl = $('#size-ddl-menu');
+      sizeDdl = $('#size-ddl-menu'),
+      orderDdl = $('#order-ddl-menu');
 
     ajaxOrders();
 
-    $(orderData).on('click', 'ul.pagination a', function(e) {
-      e.preventDefault();
-      ajaxOrders(parseInt(getUrlParams($(this).attr('href')).page || 1));
+    $(orderDdl).find('a.menu-item').click(function() {
+      var item_id = $(this).data('id');
+      $.post($(orderDdl).data('url'), {
+        id: item_id
+      }).done(function(data) {
+        console.log(data);
+      });
     });
 
-    $(typeDdl).find('a').click(function() {
+    $(typeDdl).find('a.menu-item').click(function() {
       var drink_type = $(this).text(),
         cur = $(typeDdl).data('q');
       if (!cur || cur != drink_type) {
@@ -21,7 +26,7 @@
       }
     });
 
-    $(sizeDdl).find('a').click(function() {
+    $(sizeDdl).find('a.menu-item').click(function() {
       var cup_size = $(this).text(),
         cur = $(sizeDdl).data('q');
       if (!cur || cur != cup_size) {
@@ -35,6 +40,11 @@
     var dAjaxOrders = debounce(ajaxOrders, 2000, true);
     $('#refresh-list').click(function() {
       dAjaxOrders();
+    });
+
+    $(orderData).on('click', 'ul.pagination a', function(e) {
+      e.preventDefault();
+      ajaxOrders(parseInt(getUrlParams($(this).attr('href')).page || 1));
     });
 
     function ajaxOrders(page) {

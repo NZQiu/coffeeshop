@@ -19,21 +19,15 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
-    @order = Order.new
-  end
-
   def create
-    @order = Order.new order_params
-    if @order.save
-      redirect_to orders_path, alert: 'Order created'
-    else
-      render :new
+    item_id = params[:id]
+
+    is_succ = item_id && Order.new(item_id: item_id).save
+    msg = is_succ ? 'Order successfully created.' : 'Order fail created!'
+
+    respond_to do |format|
+      format.json { render json: {is_succ: is_succ, msg: msg}}
     end
   end
 
-  private
-  def order_params
-    params.require(:order).permit(:item_id)
-  end
 end

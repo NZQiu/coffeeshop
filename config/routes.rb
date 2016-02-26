@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :orders, only: [:index, :new, :create] do
+  resources :orders, only: [:index, :create] do
     collection do
       get :listing
     end
