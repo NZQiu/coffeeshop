@@ -1,6 +1,5 @@
 
 body {
-  font-family: 'PT Sans', 'Open Sans', Arial, Helvetica, sans-serif;
   padding: 60px;
 }
 
@@ -19,6 +18,9 @@ body {
 
 #order-data {
   padding: 8px 0;
+  .table{
+    margin: 0;
+  }
 }
 
 .panel-heading{
@@ -26,6 +28,18 @@ body {
   .loading-icon img{
     width: 20px;
     height: 20px;
+  }
+}
+
+.dropdown-toggle {
+  width: 158px;
+  .fa {
+    float: left;
+    margin-top: 3px;
+  }
+  .caret {
+    float: right;
+    margin-top: 8px;
   }
 }
 

@@ -1,17 +1,20 @@
 %table.table.table-striped
   %tr
-    %th
     %th Name
     %th Cup Size
     %th Type
     %th Price
     %th Order Time
-  - @orders.each do |order|
+  - if @orders && !@orders.empty?
+    - @orders.each do |order|
+      %tr
+        %td= order.item.drink.name.humanize
+        %td= order.item.cup_size.humanize
+        %td= order.item.drink.drink_type.humanize
+        %td= format_price order.item.price
+        %td= order.created_at.strftime('%d %b %Y %H:%M:%S')
+  - else
     %tr
-      %td= order.id
-      %td= order.item.drink.name.humanize
-      %td= order.item.cup_size.humanize
-      %td= order.item.drink.drink_type.humanize
-      %td= format_price order.item.price
-      %td= order.created_at.strftime('%d %b %Y %H:%M:%S')
-= paginate @orders
+      %td.text-center{colspan: "6"} No Result
+- if @orders
+  = paginate @orders

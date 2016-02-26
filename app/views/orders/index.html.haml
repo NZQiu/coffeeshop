@@ -27,20 +27,20 @@
         #type-ddl.dropdown
           %button.btn.btn-default.dropdown-toggle#type-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
             %i.fa.fa-database
-            %span= 'Group by Type'
+            %span#type-text= 'Group by Type'
             %span.caret
-          %ul.dropdown-menu{'aria-labelledby' => 'type-ddl-btn'}
-            - ['Coffee', 'Tea'].each do |i|
+          %ul.dropdown-menu#type-ddl-menu{'aria-labelledby' => 'type-ddl-btn'}
+            - ['All', 'Coffee', 'Tea'].each do |i|
               %li
                 %a{'href' => 'javascript:void(0);'}= i
       .col-xs-4
         #cup-ddl.dropdown
           %button.btn.btn-default.dropdown-toggle#cup-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
             %i.fa.fa-database
-            %span= 'Group by Cup'
+            %span#size-text= 'Group by Cup'
             %span.caret
-          %ul.dropdown-menu{'aria-labelledby' => 'cup-ddl-btn'}
-            - ['Tall', 'Grande', 'Venti'].each do |i|
+          %ul.dropdown-menu#size-ddl-menu{'aria-labelledby' => 'cup-ddl-btn'}
+            - ['All', 'Tall', 'Grande', 'Venti'].each do |i|
               %li
                 %a{'href' => 'javascript:void(0);'}= i
     #order-data{data: { url: listing_orders_path }}
