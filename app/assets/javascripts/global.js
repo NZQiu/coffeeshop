@@ -40,4 +40,8 @@
       return result;
     };
   };
+
+  $(function() {
+    $('[data-toggle="popover"]').popover();
+  });
 }.call(this));

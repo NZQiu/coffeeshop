@@ -1,7 +1,7 @@
 
 =render 'nav', {active: 0}
 
-.panel.panel-primary
+.panel.panel-info
   .panel-body
     #order-ddl.dropdown
       %button.btn.btn-default.dropdown-toggle#order-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
@@ -12,14 +12,13 @@
         - Item.all.find_each do |item|
           %li
             %a{'href' => 'javascript:void(0);', 'data-id' => item.id}= "#{item.drink.name.humanize} - #{item.cup_size.humanize}"
-
-.panel.panel-info
+.panel.panel-primary
   .panel-heading
     %i.fa.fa-list-alt
     %span Order Listing
     %span.loading-icon
       =image_tag "ajax-loader.gif"
-    %i.fa.fa-refresh.pull-right#refresh-list
+    %i.fa.fa-refresh.pull-right#refresh-list{data: {toggle: 'popover', trigger: 'hover', placement: 'top', content: "Refresh"}}
   .panel-body
     .row
       .col-xs-4

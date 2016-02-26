@@ -31,7 +31,8 @@
       }
     });
 
-    var dAjaxOrders = debounce(ajaxOrders, 1000, true);
+    // Assume response time is 2 second
+    var dAjaxOrders = debounce(ajaxOrders, 2000, true);
     $('#refresh-list').click(function() {
       dAjaxOrders();
     });
