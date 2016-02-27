@@ -13,6 +13,7 @@
         id: item_id
       }).done(function(data) {
         data.is_succ ? showNotice(data.msg) : showError(data.msg);
+        ajaxOrders(1);
       });
     });
 

@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
 
-  ORDERS_PER_PAGE = 5
-
   def index
   end
 
@@ -10,23 +8,26 @@ class OrdersController < ApplicationController
     cup_size = params[:size]
 
     @orders = Order.all
-    @orders = @orders.by_drink_type(drink_type) if drink_type && !drink_type.empty? && drink_type.downcase != 'all'
-    @orders = @orders.by_cup_size(cup_size) if cup_size && !cup_size.empty? && cup_size.downcase != 'all'
-    @orders = @orders.order(created_at: :desc).page(params[:page]).per(ORDERS_PER_PAGE) if @orders
+    @orders = @orders.by_drink_type(drink_type) if !drink_type.blank? && drink_type.downcase != 'all'
+    @orders = @orders.by_cup_size(cup_size) if !cup_size.blank? && cup_size.downcase != 'all'
+    @orders = @orders.order(created_at: :desc).page(params[:page]) if @orders
 
-    respond_to do |f|
-      f.html { render layout: false }
-    end
+    @total_sales = @orders.inject(0){|sum,x| sum + x.item.price }
+
+    render layout: false
   end
 
   def create
     item_id = params[:id]
 
-    is_succ = item_id && Order.new(item_id: item_id).save
-    msg = is_succ ? 'Order successfully created.' : 'Order fail created!'
-
     respond_to do |format|
-      format.json { render json: {is_succ: is_succ, msg: msg}}
+      format.json do
+        if Order.new(item_id: item_id).save
+          render json: {is_succ: true, msg: 'Order successfully created.'}, status: :created
+        else
+          render json: {is_succ: false, msg: 'Order fail created!'}, status: :bad_request
+        end
+      end
     end
   end
 

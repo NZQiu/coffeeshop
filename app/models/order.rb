@@ -3,10 +3,10 @@ class Order < ActiveRecord::Base
 
   validates :item, presence: true
 
+  paginates_per 5
+
   def self.total_sales
-    sum = 0
-    Order.all.each { |order| sum += order.item.price }
-    sum
+    Order.all.inject(0){|sum,x| sum + x.item.price }
   end
 
   def self.by_drink_type(drink_type)

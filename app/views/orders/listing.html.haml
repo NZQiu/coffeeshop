@@ -5,7 +5,7 @@
     %th Type
     %th Price
     %th Order Time
-  - if @orders && !@orders.empty?
+  - if !@orders.blank?
     - @orders.each do |order|
       %tr
         %td= order.item.drink.name.humanize
@@ -16,5 +16,5 @@
   - else
     %tr
       %td.text-center{colspan: "6"} No Result
-- if @orders
+- if !@orders.blank?
   = paginate @orders
