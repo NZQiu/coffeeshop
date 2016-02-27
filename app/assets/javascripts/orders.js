@@ -8,13 +8,7 @@
     ajaxOrders();
 
     $(orderDdl).find('a.menu-item').click(function() {
-      var item_id = $(this).data('id');
-      $.post($(orderDdl).data('url'), {
-        id: item_id
-      }).done(function(data) {
-        data.is_succ ? showNotice(data.msg) : showError(data.msg);
-        ajaxOrders(1);
-      });
+      $.when(ajaxNewOrder($(this).data('id'))).then(ajaxOrders(1));
     });
 
     $(typeDdl).find('a.menu-item').click(function() {
@@ -37,16 +31,26 @@
       }
     });
 
-    // Assume response time is 2 second, protect server overload
-    var dAjaxOrders = debounce(ajaxOrders, 2000, true);
+    // Assume response time is 2 second, to protect server overload if keep refreshing.
+    var dAjaxOrders = coffeeshop.debounce(ajaxOrders, 2000, true);
     $('#refresh-list').click(function() {
       dAjaxOrders();
     });
 
     $(orderData).on('click', 'ul.pagination a', function(e) {
       e.preventDefault();
-      ajaxOrders(parseInt(getUrlParams($(this).attr('href')).page || 1));
+      ajaxOrders(parseInt(coffeeshop.getUrlParams($(this).attr('href')).page || 1));
     });
+
+    function ajaxNewOrder(item_id) {
+      $.post($(orderDdl).data('url'), {
+        id: item_id
+      }).done(function(data) {
+        data.is_succ ? coffeeshop.showNotice(data.msg) : coffeeshop.showError(data.msg);
+      }).fail(function() {
+        coffeeshop.showError('Order fail created!');
+      });
+    }
 
     function ajaxOrders(page) {
       var page = (page || 1),
@@ -59,12 +63,15 @@
         size: size
       }).done(function(data) {
         $(orderData).html(data);
-        $('span.loading-icon').hide();
         var msg = 'Order Listing load successfully: ';
         type && (msg += '[Drink type : ' + type + '], ');
-        size && (msg += '[Cup size : "' + size + '], ');
+        size && (msg += '[Cup size : ' + size + '], ');
         msg += '[page ' + page + '].';
-        showNotice(msg, 4000);
+        coffeeshop.showNotice(msg, 4000);
+      }).fail(function() {
+        coffeeshop.showError('Order Listing load fail!');
+      }).always(function() {
+        $('span.loading-icon').hide();
       });
     }
 

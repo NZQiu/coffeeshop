@@ -1,6 +1,8 @@
 (function() {
 
-  window.showNotice = function(msg, duration, is_error) {
+  this.coffeeshop = function() {};
+
+  coffeeshop.showNotice = function(msg, duration, is_error) {
     var mainContainer = $('#main'),
       alertContainer = $(mainContainer).find('.alert');
 
@@ -28,11 +30,11 @@
     $(alertContainer).delay(duration || 2000).slideUp('slow');
   };
 
-  window.showError = function(msg, duration) {
+  coffeeshop.showError = function(msg, duration) {
     window.showNotice(msg, duration, true);
   };
 
-  window.getUrlParams = function(url) {
+  coffeeshop.getUrlParams = function(url) {
     var params = {};
     url.substring(1).replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
       params[key] = value;
@@ -40,7 +42,7 @@
     return params;
   };
 
-  window.debounce = function(func, wait, immediate) {
+  coffeeshop.debounce = function(func, wait, immediate) {
     var timeout, args, context, timestamp, result;
     var now = Date.now || function() {
       return new Date().getTime();
