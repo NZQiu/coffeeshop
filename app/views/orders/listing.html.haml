@@ -1,16 +1,16 @@
 %table.table.table-striped
   %tr
     %th Name
+    %th Drink Type
     %th Cup Size
-    %th Type
     %th Price
     %th Order Time
   - if !@orders.blank?
     - @orders.each do |order|
       %tr
         %td= order.item.drink.name.humanize
-        %td= order.item.cup_size.humanize
         %td= order.item.drink.drink_type.humanize
+        %td= order.item.cup_size.humanize
         %td= format_price order.item.price
         %td= order.created_at.strftime('%d %b %Y %H:%M:%S')
   - else
