@@ -37,7 +37,7 @@
       }
     });
 
-    // Assume response time is 2 second
+    // Assume response time is 2 second, protect server overload
     var dAjaxOrders = debounce(ajaxOrders, 2000, true);
     $('#refresh-list').click(function() {
       dAjaxOrders();
@@ -49,15 +49,22 @@
     });
 
     function ajaxOrders(page) {
+      var page = (page || 1),
+        type = $('#type-ddl-menu').data('q') || '',
+        size = $('#size-ddl-menu').data('q') || '';
       $('span.loading-icon').show();
       $.get($(orderData).data('url'), {
-        page: page || 1,
-        type: $('#type-ddl-menu').data('q') || '',
-        size: $('#size-ddl-menu').data('q') || ''
+        page: page,
+        type: type,
+        size: size
       }).done(function(data) {
         $(orderData).html(data);
         $('span.loading-icon').hide();
-        showNotice('Order Listing load successfully', 4000);
+        var msg = 'Order Listing load successfully: ';
+        type && (msg += '[Drink type : ' + type + '], ');
+        size && (msg += '[Cup size : "' + size + '], ');
+        msg += '[page ' + page + '].';
+        showNotice(msg, 4000);
       });
     }
 

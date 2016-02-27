@@ -27,7 +27,9 @@
   .panel-body
     .row
       .col-xs-4
-        %h4.total-sales= "Total Sales: #{format_price Order.total_sales}"
+        %h4
+          %span Total Sales:
+          %span#total-sales -
       .col-xs-4
         #type-ddl.dropdown
           %button.btn.btn-default.dropdown-toggle#type-ddl-btn{'type' => 'button', 'data-toggle' => 'dropdown'}
