@@ -3,11 +3,9 @@ namespace :dev do
   task seed: :environment do
     ['Espresso', 'Latte', 'Cappuccino'].each do |coffee_name|
       drink = Drink.create drink_type: 'coffee', name: coffee_name
-      ap drink
 
       ['Tall', 'Grande', 'Venti'].each do |size|
         item = Item.create drink: drink, cup_size: size.downcase, price: Random.rand(500)
-        ap item
       end
     end
 
