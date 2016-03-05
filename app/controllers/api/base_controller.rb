@@ -25,7 +25,6 @@ module Api
     def index
       plural_resource_name = "@#{resource_name.pluralize}"
       resources = resource_class.where(query_params)
-                                .page(page_params[:page])
 
       instance_variable_set(plural_resource_name, resources)
 

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Coffee Shop</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container" id="orders">
+      <table class="table table-striped">
+        <tr>
+          <th>Order Id</th>
+          <th>Name</th>
+          <th>Drink Type</th>
+          <th>Cup Size</th>
+          <th>Price</th>
+        </tr>
+        <tr v-for="order in orders">
+          <td>{{order.id}}</td>
+          <td>{{items[order.item_id].name}}</td>
+          <td>{{items[order.item_id].drink_type}}</td>
+          <td>{{items[order.item_id].cup}}</td>
+          <td>{{items[order.item_id].price}}</td>
+        </tr>
+      </table>
+    </div>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
