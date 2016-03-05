@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   end
   root 'orders#index'
 
+  namespace :api, defaults: {format: :json} do
+    resources :orders, only: [:index, :create]
+    resources :items, only: [:index]
+  end
+
 end

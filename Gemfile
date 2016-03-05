@@ -8,8 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'haml-rails'
-
 gem 'enumerize'
+gem 'jbuilder'
 
 # For pagination
 gem 'kaminari'

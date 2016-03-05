@@ -3,6 +3,8 @@ class Item < ActiveRecord::Base
 
   validates :drink, presence: true
 
+  paginates_per 5
+  
   extend Enumerize
   enumerize :cup_size, in: ['tall', 'grande', 'venti']
 end
